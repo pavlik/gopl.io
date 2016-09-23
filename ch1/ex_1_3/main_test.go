@@ -2,14 +2,16 @@ package main
 
 import "testing"
 
-func BenchmarkSlowAlgorithm(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		slowAlgorithm()
-	}
-}
+func BenchmarkAlgo(b *testing.B) {
+	b.Run("Slow", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			slowAlgorithm()
+		}
+	})
 
-func BenchmarkFastAlgorithm(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		fastAlgorithm()
-	}
+	b.Run("Fast", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			fastAlgorithm()
+		}
+	})
 }
